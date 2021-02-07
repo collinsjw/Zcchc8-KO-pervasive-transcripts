@@ -1,7 +1,7 @@
 library(tidyverse)
 
 #Open the regulatory build gff file
-gff <- read.delim("/Users/Joshua/JHU_dissertation/gtf_files/mus_musculus.GRCm38.Regulatory_Build.regulatory_features.20180516.gff", header = F)
+gff <- read.delim("/mus_musculus.GRCm38.Regulatory_Build.regulatory_features.20180516.gff", header = F)
 
 #This gff file lacks the customary "chr" prefix for the chromosomes so we must add one.
 gff <- transform(gff, V1 = sprintf('chr%s', V1))
