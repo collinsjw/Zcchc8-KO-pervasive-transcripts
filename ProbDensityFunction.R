@@ -37,6 +37,7 @@ k <- k[gtools::mixedorder(k$Var1), ]
 l <- merge(j, k, by = "Var1")
 l <- rename(l, chr = "Var1", genes = "Freq.x", prompts = "Freq.y")
 l <- l[gtools::mixedorder(l$chr), ]
+
 #Mouse chromosome lengths as of January 2021.  Follow the RefSeq hyperlinks https://www.ncbi.nlm.nih.gov/genome?term=mus%20musculus
 #for the exact chromosome size.
 l$chrLength <- c(195154279, 181755017, 159745316, 156860686, 151758149, 149588044, 144995196, 130127694, 124359700, 130530862,
@@ -105,7 +106,6 @@ gtf$V1 <- factor(gtf$V1, levels = chr.order, labels = chr.vect)
 #Sometimes this throws a "polygon edge not found" error.  There are many reasons for this error so 
 #I suggest searching stackoverflow.com for solutions.
 
-tiff("/Users/Joshua/JHU_dissertation/Figures/OnlyExpressedGenesNrd0.tiff", units = "in", width = 8.5, height = 11, res = 600)
 f <- ggplot() + 
   labs(x = "Chromosome Position (bp)", y = "Probability Density Function") +
   geom_density(data = sims.prompts, 
@@ -131,7 +131,6 @@ f <- ggplot() +
     panel.border = element_rect(color = "black", fill=NA, size=0.5)
   )
 f
-dev.off()
 
 #Checking for strand bias in PROMPTs
 f2 <- ggplot() + 
